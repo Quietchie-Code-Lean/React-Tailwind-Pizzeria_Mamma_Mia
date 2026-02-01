@@ -1,11 +1,15 @@
 import './App.css'
-import Test from './components/testComponent'
+import FooterPizza from './layout/footerPizza'
+import NavbarPizza from './layout/navbarPizza'
+import PizzasHome from './layout/sectionPizza'
 
 function App() {
 
   return (
     <>
-      <Test/>
+      <NavbarPizza/>
+      <PizzasHome/>
+      <FooterPizza/>
     </>
   )
 }
