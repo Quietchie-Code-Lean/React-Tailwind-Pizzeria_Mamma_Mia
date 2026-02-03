@@ -11,7 +11,7 @@ function App() {
       <PizzasHome/>
       <FooterPizza/>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

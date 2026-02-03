@@ -23,7 +23,7 @@ const CardPizza = ({ idName, price, ingredients, img }) => {
                             px-4
                             py-1
                             rounded
-                            hover:bg-sky-800">Add to cart
+                            hover:bg-sky-00">Add to cart
                         </button>
 
                         <span className="text-lg font-bold text-sky-300">${price}</span>
