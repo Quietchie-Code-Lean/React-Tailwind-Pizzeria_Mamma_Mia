@@ -41,20 +41,18 @@ const LoginPage = ({DbUsers, setDbUsers}) => {
             return;
         } setErrorPassword(false);
 
-        /* correct email? */
-        const checkEmail = DbUsers.some(DbUser => DbUser.email === dataUser.email);
-        if(!checkEmail){
-            setErrorEmail(true);
-            return;
-        }setErrorEmail(false);
-        
-        /* correct password? */
-        const checkPassword = DbUsers.some(DbUser => DbUser.password === dataUser.password)
-        if(checkPassword){
-            setErrorLogin(true);
-            return;
-        }setErrorLogin(false);
-        alert(`You Have Logged In`);
+        /* user exist? */
+        const user = DbUsers.find(DbUser => DbUser.email === dataUser.email);
+        if (!user) { 
+            setErrorEmail(true); 
+            return; 
+        }
+        /* password match? */
+        if (user.password !== dataUser.password) {
+             setErrorLogin(true); 
+             return; 
+        }alert("You have logged in!");
+
 
         setDataUser({
             email: "",
