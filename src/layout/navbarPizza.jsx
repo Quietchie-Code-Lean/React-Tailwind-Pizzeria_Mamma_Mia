@@ -6,8 +6,8 @@ const NavbarPizza = () => {
   
     return (
 <>
-        <nav className="w- bg-slate-800 text-white">
-            <div className="max-w-7xl mx-auto px-4">
+        <nav className="w-full bg-slate-800 text-white">
+            <div className="px-6">
                 <div className="flex h-16 items-center justify-between">
                 
 

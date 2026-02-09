@@ -6,7 +6,7 @@ const HeaderPizza = () => {
         bg-cover 
         bg-center 
         flex 
-        lex-col 
+        flex-col 
         justify-center 
         items-center 
         text-white 
