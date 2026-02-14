@@ -3,18 +3,24 @@ import HeaderPizza from "../components/headerPizza";
 
 
 const PizzasHome = () => {
+
+  /* Preset styles */
+
+  const sectionClass = "max-w-7xl mx-auto px-10 py-10 inset-shadow-sm inset-shadow-indigo-500/50";
+  const titleClass = "text-2xl font-bold text-center mb-8";
+  const gridClass = "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6";
+
+
+
   return (
     <>
-    <HeaderPizza/>
-    <section className="max-w-7xl mx-auto px-10 py-10 inset-shadow-sm inset-shadow-indigo-500/50">
-      <h2 className="text-2xl font-bold text-center mb-8">Check our products:</h2>
-          <div className="
-            grid
-            grid-cols-1
-            sm:grid-cols-2
-            md:grid-cols-3
-            gap-6
-            ">
+    <HeaderPizza />
+    <section className={sectionClass}>
+      <h2 className={titleClass}>Check our products:</h2>
+          <div className={gridClass}>
+
+              
+
               <CardPizza
                   idName="Napolitana"
                   price={5980}

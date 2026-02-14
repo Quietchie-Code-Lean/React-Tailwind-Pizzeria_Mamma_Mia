@@ -1,32 +1,41 @@
+
 const CardPizza = ({ idName, price, ingredients, img }) => {
+
+    /* Preset styles */
+    /* Preset styles */
+
+const cardClass = "bg-white rounded-lg shadow-md overflow-hidden";
+const imageClass = "w-full h-48 object-cover";
+const bodyClass = "p-4";
+const titleClass = "text-lg font-semibold mb-2 text-slate-600";
+const ingredientsClass = "text-sm text-gray-600 mb-4 border-y-2 py-4";
+const footerClass = "flex justify-between items-center pb-4";
+const buttonClass = "bg-sky-500 text-white px-4 py-1 rounded hover:bg-sky-600 transition";
+const priceClass = "text-lg font-bold text-sky-300";
+
+
+
+
+
+
     return(
-        <div className="
-        bg-white
-        rounded-lg
-        shadow-md
-        overflow-hidden">
+        <div className={cardClass}>
         
                 <img
                     src={img}
                     alt={idName}
-                    className="w-full h-48 object-cover"/>
+                    className={imageClass}/>
 
-                <div className="p-4">
-                    <h3 className="text-lg font-semibold mb-2 text-slate-600">Pizza: {idName}</h3>
+                <div className={bodyClass}>
+                    <h3 className={titleClass}>Pizza: {idName}</h3>
 
-                    <p className="text-sm text-gray-600 mb-4 border-y-2 py-4">Ingredients: <br />{ingredients.join(", ")}</p>
+                    <p className={ingredientsClass}>Ingredients: <br />{ingredients.join(", ")}</p>
 
-                    <div className="flex justify-between items-center pb-4">
-                        <button className="
-                            bg-sky-500
-                            text-white
-                            px-4
-                            py-1
-                            rounded
-                            hover:bg-sky-00">Add to cart
+                    <div className={footerClass}>
+                        <button className={buttonClass}>Add to cart
                         </button>
 
-                        <span className="text-lg font-bold text-sky-300">${price}</span>
+                        <span className={priceClass}>${price}</span>
 
                     </div>
 
