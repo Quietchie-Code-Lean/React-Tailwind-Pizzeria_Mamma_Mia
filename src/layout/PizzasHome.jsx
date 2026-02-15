@@ -24,7 +24,7 @@ const PizzasHome = () => {
                   key={pizza.id}
                   id={pizza.id}
                   name={pizza.name}
-                  desc={pizza.desc}
+                  description={pizza.desc}
                   price={pizza.price}
                   ingredients={pizza.ingredients}
                   img={pizza.img}/>

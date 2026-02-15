@@ -24,14 +24,17 @@ const CardPizza = ({ name, price, ingredients, img, description }) => {
 
                     <h3 className={titleClass}>{name.toUpperCase()}</h3>
 
-                    <p>{description}</p>
+                    <p className="text-sm text-gray-600">{description}</p>
 
                     <p className={ingredientsClass}>Ingredients:
                         <br />
-                        <ul id="renderIngredients">
+                        <ul 
+                        id="renderIngredients"
+                        >
                             {ingredients.map(ingredient => <li>{ingredient}</li>)}
                         </ul>
                     </p>
+                    
                 
 
                     <div className={footerClass}>
