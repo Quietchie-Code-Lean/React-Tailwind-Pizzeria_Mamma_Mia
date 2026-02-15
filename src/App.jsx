@@ -5,6 +5,7 @@ import RegisterPage from './components/menu/RegisterPage.jsx';
 import FooterPizza from './layout/footerPizza.jsx'
 import NavbarPizza from './layout/navbarPizza.jsx'
 import PizzasHome from './layout/PizzasHome.jsx'
+import { pizzaCart } from "../../pizzas";
 
 function App() {
 
@@ -28,7 +29,10 @@ function App() {
     <>
       <NavbarPizza/>
 
-      <PizzasHome />
+      {/* <PizzasHome /> */}
+
+      <Cart 
+      pizzaCart={pizzaCart}/>
 
       {/* <h2 className='font-bold text-3xl text-blue-600/75 m-6'>Register:</h2>
       <RegisterPage
