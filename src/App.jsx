@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import './App.css'
-import LoginPage from './components/menu/LoginPage.jsx';
-import RegisterPage from './components/menu/RegisterPage.jsx';
+/* import LoginPage from './components/menu/LoginPage.jsx'; */
+/* import RegisterPage from './components/menu/RegisterPage.jsx'; */
 import FooterPizza from './layout/footerPizza.jsx'
 import NavbarPizza from './layout/navbarPizza.jsx'
-import PizzasHome from './layout/PizzasHome.jsx'
-import { pizzaCart } from "../../pizzas";
+/* import PizzasHome from './layout/PizzasHome.jsx' */
+import { pizzaCart } from '../pizzas.js';
+import Cart from './components/menu/Cart.JSX';
 
 function App() {
 

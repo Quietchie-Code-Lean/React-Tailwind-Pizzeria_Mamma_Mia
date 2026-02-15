@@ -1,22 +1,25 @@
 import { useState } from "react";
 
 
-const Counter = () => {
+const CounterPizza = ({countDefault}) => {
 
 const [count, setCount] = useState(0)
 
-    
+    const add = () => setCount((count) => count +1)
+    const subs = () => setCount((count) => count -1)
+    const reset = () => setCount((count) => count = 0)
+
 
     return (
 <>
-<div className="btn-container">
-        <button onClick={() => setCount((count) => count +1)}>+</button>
-        <span>{count}</span>
-        <button onClick={()=> setCount((count) => count -1)}>-</button>
-        <button onClick={()=> setCount((count) => count = 0)}>Reset</button>
-</div>
+    <div className="btn-container">
+            <button onClick={{add}}>+</button>
+            <span>{count}</span>
+            <button onClick={{subs}}>-</button>
+            <button onClick={{reset}}>Reset</button>
+    </div>
 </>
     );
 };
 
-export default Counter;
+export default CounterPizza;
