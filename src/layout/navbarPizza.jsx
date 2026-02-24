@@ -24,7 +24,7 @@ const NavbarPizza = () => {
                     </div>
 
                 
-                    <a href="#" className="font-bold color-sky-700 cursor-pointer">🛒 Total: $0</a>
+                    <a href="#" className="font-bold color-sky-700 cursor-pointer">🛒 Total: ${total}</a>
                 </div>
             </div>
         </nav>

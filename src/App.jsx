@@ -28,29 +28,38 @@ function App() {
 
   return (
     <>
-      <NavbarPizza/>
+    <div className="min-h-screen flex flex-col">
 
-      {/* <PizzasHome /> */}
+          <NavbarPizza/>
 
-      <Cart 
-      pizzaCart={pizzaCart}/>
+          <main className="flex-1">
 
-      {/* <h2 className='font-bold text-3xl text-blue-600/75 m-6'>Register:</h2>
-      <RegisterPage
-      DbUsers={DbUsers}
-      setDbUsers={setDbUsers}
-      /> */}
 
-      <br />
-      <br />
+              {/* <PizzasHome /> */}
 
-      {/* <h2 className='font-bold text-3xl text-blue-600/75 m-6'>Login:</h2>
-      <LoginPage
-      DbUsers={DbUsers}
-      setDbUsers={setDbUsers}
-       /> */}
-      
-      <FooterPizza/>
+              <Cart 
+              pizzaCart={pizzaCart}/>
+
+              {/* <h2 className='font-bold text-3xl text-blue-600/75 m-6'>Register:</h2>
+              <RegisterPage
+              DbUsers={DbUsers}
+              setDbUsers={setDbUsers}
+              /> */}
+
+              <br />
+              <br />
+
+              {/* <h2 className='font-bold text-3xl text-blue-600/75 m-6'>Login:</h2>
+              <LoginPage
+              DbUsers={DbUsers}
+              setDbUsers={setDbUsers}
+              /> */}
+          
+          </main>
+
+          <FooterPizza/>
+
+      </div>
     </>
   );
 };

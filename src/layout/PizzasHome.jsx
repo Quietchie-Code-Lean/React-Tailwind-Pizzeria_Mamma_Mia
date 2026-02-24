@@ -1,7 +1,6 @@
 import CardPizza from "../components/CardPizza";
 import HeaderPizza from "../components/HeaderPizza";
 import { pizzas } from "../../pizzas";
-import { pizzaCart } from "../../pizzas";
 
 
 const PizzasHome = () => {
