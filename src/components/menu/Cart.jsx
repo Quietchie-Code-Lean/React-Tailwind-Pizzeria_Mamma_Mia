@@ -72,8 +72,8 @@ const Cart = ({pizzaCart}) => {
 
             {isEmpty ? (
                 <p className="text-slate-600 italic mt-4">The cart is empty</p>) 
-                : ( <ul className={containerClass}>
-
+                : ( 
+                <ul className={containerClass}>
                         {cartItems.map(pizza => {
                                 const subTotal = pizza.price * pizza.count;
 

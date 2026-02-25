@@ -12,19 +12,14 @@ const CounterPizza = ({count, subTotal, handleAdd, handleSubs, handleDelete}) =>
     return (
 <>
         <div className={container}>
-
             <span className={subTotalClass}>SubTotal: ${subTotal}</span>
-
             <div className="flex items-center gap-3">
-
                 <div className={controls}>
                     <button className={groupBtn} onClick={handleSubs}>-</button>
                     <span className={countClass}>{count}</span>
                     <button className={groupBtn} onClick={handleAdd}>+</button>
                 </div>
-
                 <button className={deleteBtn} onClick={handleDelete}>Delete</button>
-
             </div>
         </div>
 

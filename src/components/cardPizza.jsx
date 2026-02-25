@@ -14,29 +14,19 @@ const CardPizza = ({ name, price, ingredients, img, description }) => {
 
     return(
         <div className={cardClass}>
-        
                 <img
                     src={img}
                     alt={name}
                     className={imageClass}/>
-
                 <div className={bodyClass}>
-
                     <h3 className={titleClass}>{name.toUpperCase()}</h3>
-
                     <p className="text-sm text-gray-600">{description}</p>
-
                     <p className={ingredientsClass}>Ingredients:
                         <br />
-                        <ul 
-                        id="renderIngredients"
-                        >
+                        <ul id="renderIngredients">
                             {ingredients.map(ingredient => <li>{ingredient}</li>)}
                         </ul>
                     </p>
-                    
-                
-
                     <div className={footerClass}>
                         <button className={buttonClass}>Add to cart
                         </button>

@@ -4,7 +4,8 @@ import './App.css'
 /* import RegisterPage from './components/menu/RegisterPage.jsx'; */
 import FooterPizza from './layout/footerPizza.jsx'
 import NavbarPizza from './layout/navbarPizza.jsx'
-import PizzasHome from './layout/PizzasHome.jsx'
+/* import PizzasHome from './layout/PizzasHome.jsx' */
+import Pizza from './components/Pizza.jsx';
 /* import { pizzaCart } from '../pizzas.js'; */
 /* import Cart from './components/menu/Cart.JSX'; */
 
@@ -26,6 +27,7 @@ function App() {
 
   ]);
 
+
   return (
     <>
     <div className="min-h-screen flex flex-col">
@@ -33,9 +35,8 @@ function App() {
           <NavbarPizza/>
 
           <main className="flex-1">
-
-
-              <PizzasHome />
+              <Pizza />
+              {/* <PizzasHome /> */}
 
               {/* <Cart 
               pizzaCart={pizzaCart}/> */}
@@ -56,9 +57,7 @@ function App() {
               /> */}
           
           </main>
-
           <FooterPizza/>
-
       </div>
     </>
   );
