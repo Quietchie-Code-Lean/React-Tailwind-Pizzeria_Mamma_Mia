@@ -19,7 +19,7 @@ const Cart = ({pizzaCart}) => {
 
     /* Global State pizzas Cart */
 
-    const [cartItems, setCartItems] = useState(pizzaCart);
+    const [cartItems, setCartItems] = useState(Array.isArray(pizzaCart) ? pizzaCart : []);
 
 
     const handleAdd = (pizzaId) => {
@@ -63,46 +63,48 @@ const Cart = ({pizzaCart}) => {
         total += cartItems[i].price * cartItems[i].count;
     }
 
-  
+    const isEmpty = cartItems.length === 0;
 
     return(
         <>
         <div className={mainContent}>
                 <h2 className={titleClass}>Detail Order:</h2>
-                <ul className={containerClass}>
-                    {cartItems.map(pizza => {
 
-                            const subTotal = pizza.price * pizza.count;
+            {isEmpty ? (
+                <p className="text-slate-600 italic mt-4">The cart is empty</p>) 
+                : ( <ul className={containerClass}>
 
-                            return(
+                        {cartItems.map(pizza => {
+                                const subTotal = pizza.price * pizza.count;
 
-                                
-                                <li key={pizza.id}>
-                                <div className={liClass}>
-                                    <span className={leftGroupClass}>
-                                        <img 
-                                        className={imgClass} 
-                                        src={pizza.img} 
-                                        alt={pizza.name}/>
-                                        <div className="text-start">
-                                            <h4 className={nameClass}>{pizza.name.toUpperCase()}</h4>
-                                            <span>${pizza.price}</span>
-                                        </div>
-                                    </span>
-                                    <span className={rightGroupClass}>
-                                        <CounterPizza
-                                        price={pizza.price}
-                                        count={pizza.count}
-                                        subTotal={subTotal}
-                                        handleAdd={() => handleAdd(pizza.id)}
-                                        handleSubs={() => handleSubs(pizza.id)}
-                                        handleDelete={() => handleDelete(pizza.id)}/>
-                                    </span>
-                                </div>
-                            </li>
+                                return(
+                                    <li key={pizza.id}>
+                                    <div className={liClass}>
+                                        <span className={leftGroupClass}>
+                                            <img 
+                                            className={imgClass} 
+                                            src={pizza.img} 
+                                            alt={pizza.name}/>
+                                            <div className="text-start">
+                                                <h4 className={nameClass}>{pizza.name.toUpperCase()}</h4>
+                                                <span>${pizza.price}</span>
+                                            </div>
+                                        </span>
+                                        <span className={rightGroupClass}>
+                                            <CounterPizza
+                                            price={pizza.price}
+                                            count={pizza.count}
+                                            subTotal={subTotal}
+                                            handleAdd={() => handleAdd(pizza.id)}
+                                            handleSubs={() => handleSubs(pizza.id)}
+                                            handleDelete={() => handleDelete(pizza.id)}/>
+                                        </span>
+                                    </div>
+                                </li>
+                            )}
                         )}
-                    )}
                     </ul>
+                )}
                     
                 <p className={totalRowClass}>
                     <span className={totalLabelClass}>Total Payment:</span>
