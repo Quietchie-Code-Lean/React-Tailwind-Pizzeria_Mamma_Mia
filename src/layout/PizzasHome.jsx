@@ -31,8 +31,6 @@ const PizzasHome = () => {
 
   useEffect(() => {getDataPizzas()}, []);
 
-  if (!pizza) return <p className="text-slate-600">Loading...</p>;
-
 
   return (
     <>

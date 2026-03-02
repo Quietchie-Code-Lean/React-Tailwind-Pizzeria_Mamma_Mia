@@ -25,7 +25,7 @@ const Pizza = () => {
         catch (error) {
             console.log(error.message)
         };
-    };
+    }; 
 
     useEffect(() => {getDataPizzas()}, []);
 
@@ -46,8 +46,7 @@ const Pizza = () => {
                 <button type="button">Add to Cart</button>
                 </div>
             </div>
-        
-        
+
 </>
 )
 };
