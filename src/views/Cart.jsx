@@ -1,19 +1,19 @@
-import CounterPizza from "../CounterPizza";
+import CounterPizza from '../components/CounterPizza.jsx';
 import { useState } from "react";
 
 
 const Cart = ({pizzaCart}) => {
     
     /* Preset styles */
-    const mainContent = "w-full mb-auto";
+    const mainContent = "w-full man-h-screen flex flex-col";
     const titleClass = "text-2xl font-bold text-slate-800 mb-6";
-    const containerClass = "w-full max-w-2xl m-auto list-none p-0 m-0"
+    const containerClass = "w-full max-w-2xl mx-auto list-none p-0 mt-2"
     const liClass = "flex items-center justify-between py-3";
     const leftGroupClass = "flex items-center gap-3";
     const imgClass = "w-10 h-10 rounded object-cover shadow-sm";
     const nameClass = "text-base font-semibold text-white text-xl";
     const rightGroupClass = "flex items-center gap-4";
-    const totalRowClass = "mt-8 text-3xl font-extrabold text-slate-900";
+    const totalRowClass = "mt-auto pt-8 text-3xl font-extrabold text-slate-900";
     const totalLabelClass = "mr-2";
     const payBtnClass = "mt-6 inline-flex items-center justify-center rounded-lg bg-slate-900 px-6 py-2.5 text-white font-semibold shadow hover:bg-slate-800 active:scale-[0.99] transition";
 

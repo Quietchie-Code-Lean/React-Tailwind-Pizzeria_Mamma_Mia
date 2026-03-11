@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 
 
 const NavbarPizza = () => {
@@ -15,16 +16,15 @@ const NavbarPizza = () => {
                         <h1 className="text-xs font-semibold">Mamma Mía</h1>
                 
                         <div className="flex gap-4 text-sm">
-                            <a href="#" className="hover:underline cursor-pointer">Home</a>
-                            <a href="#" className="hover:underline cursor-pointer">Login</a>
-                            {/* <a href="#" className="hover:underline cursor-pointer">Logout</a> */}
-                            {/* <a href="#" className="hover:underline cursor-pointer">Profile</a> */}
-                            <a href="#" className="hover:underline cursor-pointer">Registro</a>
+                            <NavLink to="/">Home</NavLink>
+                            <NavLink to="/register">Register</NavLink>
+                            <NavLink to="/login">Login</NavLink>
+                            <NavLink to="/profile">Profile</NavLink>
                         </div>
                     </div>
 
-                
-                    <a href="#" className="font-bold color-sky-700 cursor-pointer">🛒 Total: ${total}</a>
+                    <NavLink to="/cart">🛒 Total: ${total}</NavLink>
+
                 </div>
             </div>
         </nav>

@@ -1,13 +1,24 @@
+/* React dependencie */
 import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+
+/* style css */
 import './App.css'
-/* import LoginPage from './components/menu/LoginPage.jsx'; */
-/* import RegisterPage from './components/menu/RegisterPage.jsx'; */
-import FooterPizza from './layout/footerPizza.jsx'
+
+/* components */
+import LoginPage from './views/LoginPage.jsx';
+import RegisterPage from './views/RegisterPage.jsx';
+import FooterPizza from './layout/FooterPizza.jsx'
 import NavbarPizza from './layout/navbarPizza.jsx'
-/* import PizzasHome from './layout/PizzasHome.jsx' */
-import Pizza from './components/Pizza.jsx';
-/* import { pizzaCart } from '../pizzas.js'; */
-/* import Cart from './components/menu/Cart.JSX'; */
+import PizzasHome from './layout/PizzasHome.jsx'
+import Pizza from './views/Pizza.jsx';
+import Cart from './views/Cart.JSX';
+import Profile from './views/Profile.jsx';
+import NotFound from './views/NotFound.jsx';
+
+/* Array mock cart */
+import { pizzaCart } from '../pizzas.js'
+
 
 function App() {
 
@@ -35,26 +46,22 @@ function App() {
           <NavbarPizza/>
 
           <main className="flex-1">
-              <Pizza />
-              {/* <PizzasHome /> */}
+              <Routes>
+                <Route index element={<PizzasHome />}/>
+                <Route path="/register" element={<RegisterPage 
+                                                    DbUsers={DbUsers} 
+                                                    setDbUsers={setDbUsers}/>}
+                                                  />
+                <Route path="/login" element={<LoginPage 
+                                                    DbUsers={DbUsers}
+                                                    setDbUsers={setDbUsers}/>}
+                                                  />
+                <Route path="/profile" element={<Profile />}/>
+                <Route path="/pizza/p001" element={<Pizza />}/>
+                <Route path="/cart" element={<Cart pizzaCart={pizzaCart}/>}/>
+                <Route path="*" element={<NotFound />}/>
+              </Routes>
 
-              {/* <Cart 
-              pizzaCart={pizzaCart}/> */}
-
-              {/* <h2 className='font-bold text-3xl text-blue-600/75 m-6'>Register:</h2>
-              <RegisterPage
-              DbUsers={DbUsers}
-              setDbUsers={setDbUsers}
-              /> */}
-
-              <br />
-              <br />
-
-              {/* <h2 className='font-bold text-3xl text-blue-600/75 m-6'>Login:</h2>
-              <LoginPage
-              DbUsers={DbUsers}
-              setDbUsers={setDbUsers}
-              /> */}
           
           </main>
           <FooterPizza/>

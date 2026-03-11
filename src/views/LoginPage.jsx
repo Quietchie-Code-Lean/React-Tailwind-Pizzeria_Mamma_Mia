@@ -75,45 +75,50 @@ const LoginPage = ({DbUsers, setDbUsers}) => {
 
     return(
 
-        <>
-    <form className={formClass} onSubmit={handleSubmit}>
+<>
 
-        <div className="ErrorRenders">
-            {error? <p className={errorClass}>All fields are required!!</p> : null}
-            {errorPassword? <p className={errorClass}>Invalid Password: at least 6 characters!!</p> : null}
-            {errorEmail? <p className={errorClass}>Invalid Password</p> : null}
-            {errorLogin? <p className={errorClass}>Password is wrong, try again</p> : null}
-          
-        </div>
+        <h1 className='font-bold text-3xl text-white-600/75 m-6'>Login Page:</h1>
+        <br /><br />
+        <form className={formClass} onSubmit={handleSubmit}>
 
-        <div className={fieldWrapClass}>
-            <label className={labelClass} htmlFor="email">Email</label>
-            <input 
-            className={inputClass} 
-            name="email"
-            type="email"
-            value={dataUser.email} 
-            placeholder="Enter your email"
-            onChange={handleChange}
-            />
-        </div>
+            <div className="ErrorRenders">
+                {error? <p className={errorClass}>All fields are required!!</p> : null}
+                {errorPassword? <p className={errorClass}>Invalid Password: at least 6 characters!!</p> : null}
+                {errorEmail? <p className={errorClass}>Invalid Password</p> : null}
+                {errorLogin? <p className={errorClass}>Password is wrong, try again</p> : null}
+            
+            </div>
 
-        <div className={fieldWrapClass}>
-            <label className={labelClass} htmlFor="password">Password</label>
-            <input 
-            className={inputClass}  
-            name="password"
-            type="password" 
-            value={dataUser.password}
-            placeholder="Enter your password"
-            onChange={handleChange}
-            />
-        </div>
+            <div className={fieldWrapClass}>
+                <label className={labelClass} htmlFor="email">Email</label>
+                <input 
+                className={inputClass} 
+                name="email"
+                type="email"
+                value={dataUser.email} 
+                placeholder="Enter your email"
+                onChange={handleChange}
+                />
+            </div>
 
-        <button className={btnClass} type="submit">Login</button>
+            <div className={fieldWrapClass}>
+                <label className={labelClass} htmlFor="password">Password</label>
+                <input 
+                className={inputClass}  
+                name="password"
+                type="password" 
+                value={dataUser.password}
+                placeholder="Enter your password"
+                onChange={handleChange}
+                />
+            </div>
 
-    </form>
-    </>
-        )
+            <button className={btnClass} type="submit">Login</button>
+
+        </form>
+
+</>
+
+);
 };
 export default LoginPage;

@@ -93,7 +93,9 @@ const RegisterPage = ({DbUsers, setDbUsers}) => {
     }
 
     return(
-
+<>
+    <h1 className='font-bold text-3xl text-white-600/75 m-6'>Registration Page:</h1>
+    <br /><br />
     <form className={formClass} onSubmit={handleSubmit}>
 
         <div className="ErrorRenders">
@@ -142,6 +144,8 @@ const RegisterPage = ({DbUsers, setDbUsers}) => {
         <button className={btnClass} type="submit">Register</button>
 
     </form>
+</>
+
             
 )
 };
