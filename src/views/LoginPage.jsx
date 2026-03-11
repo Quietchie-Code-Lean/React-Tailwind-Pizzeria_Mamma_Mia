@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 
-const LoginPage = ({DbUsers, setDbUsers}) => {
+const LoginPage = ({DbUsers}) => {
     /* Preset styles */
     const formClass = "w-full max-w-md mx-auto mb-12 mt-12 p-6 bg-white/80 backdrop-blur rounded-2xl shadow";
     const fieldWrapClass = "mb-4";
@@ -13,10 +13,8 @@ const LoginPage = ({DbUsers, setDbUsers}) => {
     /* global states user object */
     const [dataUser, setDataUser] = useState(
         {   
-            id: "",
             email: "",
             password: "",
-            confirmPassword: "",
         }
     );
 
@@ -84,7 +82,7 @@ const LoginPage = ({DbUsers, setDbUsers}) => {
             <div className="ErrorRenders">
                 {error? <p className={errorClass}>All fields are required!!</p> : null}
                 {errorPassword? <p className={errorClass}>Invalid Password: at least 6 characters!!</p> : null}
-                {errorEmail? <p className={errorClass}>Invalid Password</p> : null}
+                {errorEmail? <p className={errorClass}>User does not exist!</p> : null}
                 {errorLogin? <p className={errorClass}>Password is wrong, try again</p> : null}
             
             </div>

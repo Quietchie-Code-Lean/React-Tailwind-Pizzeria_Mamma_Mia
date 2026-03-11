@@ -5,7 +5,7 @@ import { useState } from "react";
 const Cart = ({pizzaCart}) => {
     
     /* Preset styles */
-    const mainContent = "w-full man-h-screen flex flex-col";
+    const mainContent = "w-full min-h-[80vh] flex flex-col";
     const titleClass = "text-2xl font-bold text-slate-800 mb-6";
     const containerClass = "w-full max-w-2xl mx-auto list-none p-0 mt-2"
     const liClass = "flex items-center justify-between py-3";
@@ -15,7 +15,7 @@ const Cart = ({pizzaCart}) => {
     const rightGroupClass = "flex items-center gap-4";
     const totalRowClass = "mt-auto pt-8 text-3xl font-extrabold text-slate-900";
     const totalLabelClass = "mr-2";
-    const payBtnClass = "mt-6 inline-flex items-center justify-center rounded-lg bg-slate-900 px-6 py-2.5 text-white font-semibold shadow hover:bg-slate-800 active:scale-[0.99] transition";
+    const payBtnClass = "my-6 mx-auto w-1/8 inline-flex items-center justify-center rounded-lg bg-slate-900 px-6 py-2.5 text-white font-semibold shadow hover:bg-slate-800 active:scale-[0.99] transition";
 
     /* Global State pizzas Cart */
 

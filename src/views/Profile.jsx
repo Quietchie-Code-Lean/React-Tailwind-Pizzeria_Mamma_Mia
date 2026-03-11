@@ -1,4 +1,5 @@
 
+import { useNavigate } from "react-router-dom";
 
 
 const Profile = () => {
@@ -12,14 +13,15 @@ const Profile = () => {
     const buttonsClass = "mt-5 flex gap-2.5 justify-center";
     const profileButton = "py-2 px-4 cursor-pointer";
 
-
+    /* preset use navigate */
+    const navigate = useNavigate();
 
     const handleGoHome = () => {
-
+        navigate("/")
     };
-
+    
     const handleLogout = () => {
-
+        navigate("/")
     };
 
     
