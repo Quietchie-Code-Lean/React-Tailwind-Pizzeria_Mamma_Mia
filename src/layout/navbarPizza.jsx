@@ -1,8 +1,12 @@
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
 
 
 const NavbarPizza = () => {
-    const total = 25000;
+
+    /* This line activate useContext within Navbar component and bring data from CartContext */
+    const { total } = useContext(CartContext);
     const token = false;
   
     return (

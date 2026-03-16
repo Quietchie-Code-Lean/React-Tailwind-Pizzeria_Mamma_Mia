@@ -1,9 +1,18 @@
+/* React and hooks */
+import {  useContext } from "react";
+
+/* context */
+import { CartContext } from "../context/CartContext.jsx";
+
+/* Components */
 import CounterPizza from '../components/CounterPizza.jsx';
-import { useState } from "react";
 
 
-const Cart = ({pizzaCart}) => {
-    
+const Cart = () => {
+
+    /* CartContext */
+    const {cartItems, addPizza, subsPizza, deletePizza, total, isEmpty } = useContext(CartContext);
+
     /* Preset styles */
     const mainContent = "w-full min-h-[80vh] flex flex-col";
     const titleClass = "text-2xl font-bold text-slate-800 mb-6";
@@ -17,53 +26,7 @@ const Cart = ({pizzaCart}) => {
     const totalLabelClass = "mr-2";
     const payBtnClass = "my-6 mx-auto w-1/8 inline-flex items-center justify-center rounded-lg bg-slate-900 px-6 py-2.5 text-white font-semibold shadow hover:bg-slate-800 active:scale-[0.99] transition";
 
-    /* Global State pizzas Cart */
 
-    const [cartItems, setCartItems] = useState(Array.isArray(pizzaCart) ? pizzaCart : []);
-
-
-    const handleAdd = (pizzaId) => {
-        const newCart = [...cartItems];
-        const index = newCart.findIndex(item => item.id === pizzaId);
-        if (index === -1) return;
-
-        newCart[index].count += 1;
-        setCartItems(newCart);
-
-    };
-
-    const handleSubs = (pizzaId) => {
-        const newCart = [...cartItems];
-        const index = newCart.findIndex(item=> item.id === pizzaId);
-
-        if (index === -1) return;
-
-        if (newCart[index].count === 1) {
-            newCart.splice(index, 1);
-        } else {
-            newCart[index].count -= 1;
-        };
-
-        setCartItems(newCart);
-    };
-
-    const handleDelete = (pizzaId) => {
-        const newCart = [...cartItems];
-        const index = newCart.findIndex(item => item.id === pizzaId);
-        if (index === -1) return;
-
-        newCart.splice(index, 1);
-        setCartItems(newCart);
-    };
-
-    
-    let total = 0;
-
-    for (let i = 0; i < cartItems.length; i++) {
-        total += cartItems[i].price * cartItems[i].count;
-    }
-
-    const isEmpty = cartItems.length === 0;
 
     return(
         <>
@@ -95,9 +58,9 @@ const Cart = ({pizzaCart}) => {
                                             price={pizza.price}
                                             count={pizza.count}
                                             subTotal={subTotal}
-                                            handleAdd={() => handleAdd(pizza.id)}
-                                            handleSubs={() => handleSubs(pizza.id)}
-                                            handleDelete={() => handleDelete(pizza.id)}/>
+                                            handleAdd={() => addPizza(pizza.id)}
+                                            handleSubs={() => subsPizza(pizza.id)}
+                                            handleDelete={() => deletePizza(pizza.id)}/>
                                         </span>
                                     </div>
                                 </li>

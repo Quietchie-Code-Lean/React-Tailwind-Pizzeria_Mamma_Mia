@@ -1,5 +1,18 @@
+import { useContext } from "react";
 
-const CardPizza = ({ name, price, ingredients, img, description }) => {
+/* context imports */
+import { CartContext } from '../context/CartContext';
+import { PizzasContext } from "../context/PizzasContext";
+
+/*  */
+
+
+const CardPizza = (/* { name, price, ingredients, img, description } */) => {
+
+    const { addPizza } = useContext(CartContext);
+    const { dataPizzas } = useContext(PizzasContext);
+
+    console.log(dataPizzas)
 
     /* Preset styles */
     const cardClass = "bg-white rounded-lg shadow-md overflow-hidden";
@@ -13,28 +26,27 @@ const CardPizza = ({ name, price, ingredients, img, description }) => {
 
 
     return(
-        <div className={cardClass}>
-                <img
-                    src={img}
-                    alt={name}
-                    className={imageClass}/>
-                <div className={bodyClass}>
-                    <h3 className={titleClass}>{name.toUpperCase()}</h3>
-                    <p className="text-sm text-gray-600">{description}</p>
-                    <p className={ingredientsClass}>Ingredients:
-                        <br />
-                        <ul id="renderIngredients">
-                            {ingredients.map(ingredient => <li>{ingredient}</li>)}
-                        </ul>
-                    </p>
-                    <div className={footerClass}>
-                        <button className={buttonClass}>Add to cart
-                        </button>
-                        <span className={priceClass}>${price}</span>
-                    </div>
+            <div className={cardClass}>
+                    <img
+                        src={dataPizzas.img}
+                        alt={dataPizzas.name}
+                        className={imageClass}/>
+                    <div className={bodyClass}>
+                        <h3 className={titleClass}>{name.toUpperCase()}</h3>
+                        <p className="text-sm text-gray-600">{dataPizzas.description}</p>
+                        <p className={ingredientsClass}>Ingredients:
+                            <br />
+                            <ul id="renderIngredients">
+                                {dataPizzas.ingredients.map(ingredient => <li>{ingredient}</li>)}
+                            </ul>
+                        </p>
+                        <div className={footerClass}>
+                            <button className={buttonClass} value={addPizza}>Add to cart</button>
+                            <span className={priceClass}>${price}</span>
+                        </div>
 
-                </div>
-        </div>
+                    </div>
+            </div>
 
 );
 };

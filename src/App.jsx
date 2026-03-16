@@ -2,6 +2,10 @@
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
+/* providers */
+import CartProvider from './context/CartContext.jsx';
+import PizzasProvider from './context/PizzasContext.jsx';
+
 /* style css */
 import './App.css'
 
@@ -16,8 +20,9 @@ import Cart from './views/Cart.JSX';
 import Profile from './views/Profile.jsx';
 import NotFound from './views/NotFound.jsx';
 
+
 /* Array mock cart */
-import { pizzaCart } from '../pizzas.js'
+/* import { pizzaCart } from '../pizzas.js' */
 
 
 function App() {
@@ -42,29 +47,31 @@ function App() {
   return (
     <>
     <div className="min-h-screen flex flex-col">
+          <CartProvider>
+          <PizzasProvider>
 
-          <NavbarPizza/>
+              <NavbarPizza/>
+              <main className="flex-1">
+                  <Routes>
+                    <Route index element={<PizzasHome />}/>
+                    <Route path="/register" element={<RegisterPage 
+                                                        DbUsers={DbUsers} 
+                                                        setDbUsers={setDbUsers}/>}
+                                                        />
+                    <Route path="/login" element={<LoginPage 
+                                                        DbUsers={DbUsers}
+                                                        setDbUsers={setDbUsers}/>}
+                                                        />
+                    <Route path="/profile" element={<Profile />}/>
+                    <Route path="/pizza/p001" element={<Pizza />}/>
+                    <Route path="/cart" element={<Cart /* pizzaCart={pizzaCart} *//>}/>
+                    <Route path="*" element={<NotFound />}/>
+                  </Routes>
+              </main>
+              <FooterPizza/>
 
-          <main className="flex-1">
-              <Routes>
-                <Route index element={<PizzasHome />}/>
-                <Route path="/register" element={<RegisterPage 
-                                                    DbUsers={DbUsers} 
-                                                    setDbUsers={setDbUsers}/>}
-                                                  />
-                <Route path="/login" element={<LoginPage 
-                                                    DbUsers={DbUsers}
-                                                    setDbUsers={setDbUsers}/>}
-                                                  />
-                <Route path="/profile" element={<Profile />}/>
-                <Route path="/pizza/p001" element={<Pizza />}/>
-                <Route path="/cart" element={<Cart pizzaCart={pizzaCart}/>}/>
-                <Route path="*" element={<NotFound />}/>
-              </Routes>
-
-          
-          </main>
-          <FooterPizza/>
+          </PizzasProvider>
+          </CartProvider>
       </div>
     </>
   );
