@@ -30,11 +30,13 @@ const CardPizza = ({pizza}) => {
                     <div className={bodyClass}>
                         <h3 className={titleClass}>{pizza.name.toUpperCase()}</h3>
                         <p className="text-sm text-gray-600">{pizza.description}</p>
-                        <p className={ingredientsClass}>Ingredients:</p>
-                            <br />
+                        <div className={ingredientsClass}>
+                        <p >Ingredients:</p>
+                        <br />
                         <ul id="renderIngredients">
                             {(pizza.ingredients).map(ingredient => <li>{ingredient}</li>)}
                         </ul>
+                        </div>
                         <div className={footerClass}>
                             <button className={buttonClass}
                                     value={pizza.id}

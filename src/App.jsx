@@ -13,7 +13,7 @@ import './App.css'
 import LoginPage from './views/LoginPage.jsx';
 import RegisterPage from './views/RegisterPage.jsx';
 import FooterPizza from './layout/FooterPizza.jsx'
-import NavbarPizza from './layout/navbarPizza.jsx'
+import NavbarPizza from './layout/NavbarPizza.jsx'
 import PizzasHome from './layout/PizzasHome.jsx'
 import Pizza from './views/Pizza.jsx';
 import Cart from './views/Cart.JSX';
