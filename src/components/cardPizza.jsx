@@ -29,12 +29,12 @@ const CardPizza = ({pizza}) => {
                         className={imageClass}/>
                     <div className={bodyClass}>
                         <h3 className={titleClass}>{pizza.name.toUpperCase()}</h3>
-                        <p className="text-sm text-gray-600">{pizza.description}</p>
+                        <p className="text-sm text-gray-600">{pizza.desc}</p>
                         <div className={ingredientsClass}>
                         <p >Ingredients:</p>
                         <br />
                         <ul id="renderIngredients">
-                            {(pizza.ingredients).map(ingredient => <li>{ingredient}</li>)}
+                            {pizza.ingredients.map((ingredient, index) => <li key={index}>{ingredient}</li>)}
                         </ul>
                         </div>
                         <div className={footerClass}>

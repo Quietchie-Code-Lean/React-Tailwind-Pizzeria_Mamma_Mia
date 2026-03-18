@@ -16,7 +16,7 @@ import FooterPizza from './layout/FooterPizza.jsx'
 import NavbarPizza from './layout/NavbarPizza.jsx'
 import PizzasHome from './layout/PizzasHome.jsx'
 import Pizza from './views/Pizza.jsx';
-import Cart from './views/Cart.JSX';
+import Cart from './views/Cart.jsx';
 import Profile from './views/Profile.jsx';
 import NotFound from './views/NotFound.jsx';
 
@@ -63,7 +63,7 @@ function App() {
                                                         setDbUsers={setDbUsers}/>}
                                                         />
                     <Route path="/profile" element={<Profile />}/>
-                    <Route path="/pizza/p001" element={<Pizza />}/>
+                    <Route path="/pizza/:id" element={<Pizza />}/>
                     <Route path="/cart" element={<Cart /* pizzaCart={pizzaCart} *//>}/>
                     <Route path="*" element={<NotFound />}/>
                   </Routes>

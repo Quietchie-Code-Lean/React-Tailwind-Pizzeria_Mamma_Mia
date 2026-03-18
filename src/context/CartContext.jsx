@@ -17,9 +17,7 @@ export const CartContext = createContext();
     const addPizza = (pizza) => {
         const newCart = [...cartItems];
         const index = newCart.findIndex(item => item.id === pizza.id);
-        console.log(index);
-        console.log("pizza recibida:", pizza);
-        console.log("cart actual:", newCart);
+        
         if (index === -1){
             newCart.push({
                 ...pizza,

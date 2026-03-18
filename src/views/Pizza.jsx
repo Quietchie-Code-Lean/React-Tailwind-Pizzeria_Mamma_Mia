@@ -9,6 +9,8 @@ const Pizza = () => {
     const titleClass = "text-lg font-semibold mb-2 text-slate-600";
     const ingredientsClass = "text-sm text-gray-600 mb-4 border-y-2 py-4";
     const descriptionClass = "text-sm text-gray-600 mb-4 border-y-2 py-4";
+    const priceClass = "text-lg font-bold text-sky-300";
+    const footerClass = "flex justify-evenly items-center pb-4";
 
     const [pizza, setPizza] = useState({});
 
@@ -29,7 +31,7 @@ const Pizza = () => {
 
     useEffect(() => {getDataPizzas()}, []);
 
-    if (!pizza) return <p className="text-slate-600">Loading...</p>;
+    if (!pizza?.id) return <p className="text-slate-600">Loading...</p>;
 
     return(
 <>
@@ -40,10 +42,14 @@ const Pizza = () => {
                 alt={pizza.name} />
 
                 <div className={bodyClass}>
-                    <h2 className={titleClass}>{pizza.title}</h2>
+                    <h2 className={titleClass}>{pizza.name}</h2>
                     <p className={descriptionClass}>Description: <br />{pizza.desc}</p>
                     <p className={ingredientsClass}>Ingredients: <br />{pizza.ingredients?.join(", ")}</p> 
-                <button type="button">Add to Cart</button>
+                    
+                    <div className={footerClass}>
+                        <button type="button">Add to Cart</button>
+                        <span className={priceClass}>${pizza.price}</span>
+                    </div>
                 </div>
             </div>
 
