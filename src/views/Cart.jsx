@@ -58,9 +58,9 @@ const Cart = () => {
                                             price={pizza.price}
                                             count={pizza.count}
                                             subTotal={subTotal}
-                                            handleAdd={() => addPizza(pizza.id)}
-                                            handleSubs={() => subsPizza(pizza.id)}
-                                            handleDelete={() => deletePizza(pizza.id)}/>
+                                            handleAdd={() => addPizza(pizza)}
+                                            handleSubs={() => subsPizza(pizza)}
+                                            handleDelete={() => deletePizza(pizza)}/>
                                         </span>
                                     </div>
                                 </li>

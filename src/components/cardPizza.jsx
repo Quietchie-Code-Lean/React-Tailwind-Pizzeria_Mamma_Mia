@@ -2,17 +2,13 @@ import { useContext } from "react";
 
 /* context imports */
 import { CartContext } from '../context/CartContext';
-import { PizzasContext } from "../context/PizzasContext";
-
-/*  */
 
 
-const CardPizza = (/* { name, price, ingredients, img, description } */) => {
+
+const CardPizza = ({pizza}) => {
 
     const { addPizza } = useContext(CartContext);
-    const { dataPizzas } = useContext(PizzasContext);
 
-    console.log(dataPizzas)
 
     /* Preset styles */
     const cardClass = "bg-white rounded-lg shadow-md overflow-hidden";
@@ -28,21 +24,22 @@ const CardPizza = (/* { name, price, ingredients, img, description } */) => {
     return(
             <div className={cardClass}>
                     <img
-                        src={dataPizzas.img}
-                        alt={dataPizzas.name}
+                        src={pizza.img}
+                        alt={pizza.name}
                         className={imageClass}/>
                     <div className={bodyClass}>
-                        <h3 className={titleClass}>{name.toUpperCase()}</h3>
-                        <p className="text-sm text-gray-600">{dataPizzas.description}</p>
-                        <p className={ingredientsClass}>Ingredients:
+                        <h3 className={titleClass}>{pizza.name.toUpperCase()}</h3>
+                        <p className="text-sm text-gray-600">{pizza.description}</p>
+                        <p className={ingredientsClass}>Ingredients:</p>
                             <br />
-                            <ul id="renderIngredients">
-                                {dataPizzas.ingredients.map(ingredient => <li>{ingredient}</li>)}
-                            </ul>
-                        </p>
+                        <ul id="renderIngredients">
+                            {(pizza.ingredients).map(ingredient => <li>{ingredient}</li>)}
+                        </ul>
                         <div className={footerClass}>
-                            <button className={buttonClass} value={addPizza}>Add to cart</button>
-                            <span className={priceClass}>${price}</span>
+                            <button className={buttonClass}
+                                    value={pizza.id}
+                                    onClick={() => addPizza(pizza)}>Add to cart</button>
+                            <span className={priceClass}>${pizza.price}</span>
                         </div>
 
                     </div>

@@ -14,19 +14,26 @@ export const CartContext = createContext();
     const [cartItems, setCartItems] = useState(Array.isArray(pizzaCart) ? pizzaCart : []);
 
 
-    const addPizza = (pizzaId) => {
+    const addPizza = (pizza) => {
         const newCart = [...cartItems];
-        const index = newCart.findIndex(item => item.id === pizzaId);
-        if (index === -1) return;
-
-        newCart[index].count += 1;
-        setCartItems(newCart);
-
+        const index = newCart.findIndex(item => item.id === pizza.id);
+        console.log(index);
+        console.log("pizza recibida:", pizza);
+        console.log("cart actual:", newCart);
+        if (index === -1){
+            newCart.push({
+                ...pizza,
+                count: 1
+            });
+        }else{
+            newCart[index].count += 1;
+        }
+            setCartItems(newCart);
     };
 
-    const subsPizza = (pizzaId) => {
+    const subsPizza = (pizza) => {
         const newCart = [...cartItems];
-        const index = newCart.findIndex(item=> item.id === pizzaId);
+        const index = newCart.findIndex(item=> item.id === pizza.id);
 
         if (index === -1) return;
 
@@ -39,9 +46,9 @@ export const CartContext = createContext();
         setCartItems(newCart);
     };
 
-    const deletePizza = (pizzaId) => {
+    const deletePizza = (pizza) => {
         const newCart = [...cartItems];
-        const index = newCart.findIndex(item => item.id === pizzaId);
+        const index = newCart.findIndex(item => item.id === pizza.id);
         if (index === -1) return;
 
         newCart.splice(index, 1);
