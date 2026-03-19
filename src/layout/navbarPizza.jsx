@@ -19,8 +19,8 @@ const cartClass = "text-sm font-semibold bg-slate-700 px-3 py-1 rounded-md hover
 
 
     /* This line activate useContext within Navbar component and bring data from CartContext */
-    const getNavLinkClass = ({isActive}) => 
-        `${linkBaseClass} ${isActive ? {activeClass} : {inactiveClass}}`;
+    const getNavLinkClass = ({ isActive }) =>
+        `${linkBaseClass} ${isActive ? activeClass : inactiveClass}`;
 
     const { total } = useContext(CartContext);
     const token = false;

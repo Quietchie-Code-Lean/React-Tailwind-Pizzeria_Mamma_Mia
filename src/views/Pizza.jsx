@@ -1,5 +1,6 @@
 /* React Dependencies */
 import { useState, useEffect, useContext } from "react";
+import { useParams } from "react-router-dom";
 
 /* import cart context */
 import { CartContext } from "../context/CartContext";
@@ -16,18 +17,21 @@ const Pizza = () => {
     const priceClass = "text-lg font-bold text-sky-300";
     const footerClass = "flex justify-evenly items-center pb-4";
 
-    /* consuming context */
+    /* Consuming params from route */
+    const { id } = useParams();
+
+    /* consuming cart context function addPizza*/
     const { addPizza } = useContext(CartContext)
 
     const [pizza, setPizza] = useState({});
 
     /* Endpoint */
-    const ENDPOINT_P001 = "http://localhost:5000/api/pizzas/p001"
+    const ENDPOINT_P00ID = `http://localhost:5000/api/pizzas/${id}`
   
     const  getDataPizzas = async () =>{
 
         try {
-            const response = await fetch(ENDPOINT_P001);
+            const response = await fetch(ENDPOINT_P00ID);
             const data = await response.json();
             setPizza(data);
         } 
@@ -36,7 +40,7 @@ const Pizza = () => {
         };
     }; 
 
-    useEffect(() => {getDataPizzas()}, []);
+    useEffect(() => {getDataPizzas()}, [id] );
 
     if (!pizza?.id) return <p className="text-slate-600">Loading...</p>;
 
