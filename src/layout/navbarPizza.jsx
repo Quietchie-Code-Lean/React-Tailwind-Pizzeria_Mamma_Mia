@@ -1,21 +1,23 @@
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import { UserContext } from "../context/UserContext";
 
 
 const NavbarPizza = () => {
 
     /* Preset Tailwind Styles */
-const navClass = "w-full bg-slate-800 text-white";
-const wrapperClass = "px-6";
-const innerClass = "flex h-16 items-center justify-between";
-const leftGroupClass = "flex gap-4 items-center";
-const logoClass = "text-xs font-semibold";
-const linksContainerClass = "flex gap-4 text-sm";
-const linkBaseClass = "px-2 py-1 rounded-md transition-colors duration-200";
-const activeClass = "bg-slate-700 text-white";
-const inactiveClass = "text-slate-300 hover:text-white hover:bg-slate-700/50";
-const cartClass = "text-sm font-semibold bg-slate-700 px-3 py-1 rounded-md hover:bg-slate-600 transition";
+    const navClass = "w-full bg-slate-800 text-white";
+    const wrapperClass = "px-6";
+    const innerClass = "flex h-16 items-center justify-between";
+    const leftGroupClass = "flex gap-4 items-center";
+    const logoClass = "text-xs font-semibold";
+    const linksContainerClass = "flex gap-4 text-sm";
+    const linkBaseClass = "px-2 py-1 rounded-md transition-colors duration-200";
+    const activeClass = "bg-slate-700 text-white";
+    const inactiveClass = "text-slate-300 hover:text-white hover:bg-slate-700/50";
+    const cartClass = "flex text-sm justify-center items-center font-semibold bg-slate-700 px-3 py-1 rounded-md hover:bg-slate-600 transition";
+    
 
 
     /* This line activate useContext within Navbar component and bring data from CartContext */
@@ -23,7 +25,7 @@ const cartClass = "text-sm font-semibold bg-slate-700 px-3 py-1 rounded-md hover
         `${linkBaseClass} ${isActive ? activeClass : inactiveClass}`;
 
     const { total } = useContext(CartContext);
-    const token = false;
+    const { token, setToken, handleLogout } = useContext(UserContext);
   
     return (
 <>
@@ -41,8 +43,13 @@ const cartClass = "text-sm font-semibold bg-slate-700 px-3 py-1 rounded-md hover
                             <NavLink to="/profile" className={getNavLinkClass}>Profile</NavLink>
                         </div>
                     </div>
-
-                    <NavLink to="/cart" className={cartClass}>🛒 Total: ${total}</NavLink>
+                    <span className="flex gap-4">
+                        <button type="button"
+                                onClick={handleLogout}>Logout</button>
+                        <NavLink to="/cart" className={cartClass}>
+                            🛒 Total: ${total}
+                        </NavLink>
+                    </span>
 
                 </div>
             </div>

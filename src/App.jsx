@@ -1,10 +1,11 @@
 /* React dependencie */
-import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 /* providers */
 import CartProvider from './context/CartContext.jsx';
 import PizzasProvider from './context/PizzasContext.jsx';
+import UserProvider from './context/UserContext.jsx';
+
 
 /* style css */
 import './App.css'
@@ -21,27 +22,8 @@ import Profile from './views/Profile.jsx';
 import NotFound from './views/NotFound.jsx';
 
 
-/* Array mock cart */
-/* import { pizzaCart } from '../pizzas.js' */
-
-
 function App() {
-
-  /* Mock database to push users within objects array */
-  const [DbUsers, setDbUsers] = useState([
-
-    /* Mock Users for test */
-    { id: "leleMON",
-      email: "lele@lele.com",
-      password: "lele123"},
-      { id: "luluMON",
-      email: "lulu@lulu.com",
-      password: "lulu123"},
-      { id: "lalaMON",
-      email: "lala@lala.com",
-      password: "lala123"}
-
-  ]);
+ 
 
 
   return (
@@ -49,27 +31,24 @@ function App() {
     <div className="min-h-screen flex flex-col">
           <CartProvider>
           <PizzasProvider>
+          <UserProvider>
+
 
               <NavbarPizza/>
               <main className="flex-1">
                   <Routes>
                     <Route index element={<PizzasHome />}/>
-                    <Route path="/register" element={<RegisterPage 
-                                                        DbUsers={DbUsers} 
-                                                        setDbUsers={setDbUsers}/>}
-                                                        />
-                    <Route path="/login" element={<LoginPage 
-                                                        DbUsers={DbUsers}
-                                                        setDbUsers={setDbUsers}/>}
-                                                        />
-                    <Route path="/profile" element={<Profile />}/>
-                    <Route path="/pizza/:id" element={<Pizza />}/>
-                    <Route path="/cart" element={<Cart /* pizzaCart={pizzaCart} *//>}/>
-                    <Route path="*" element={<NotFound />}/>
+                    <Route path="/register" element={<RegisterPage />} />
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/pizza/:id" element={<Pizza /> }/>
+                    <Route path="/cart" element={<Cart />} />
+                    <Route path="*" element={<NotFound />} />
                   </Routes>
               </main>
               <FooterPizza/>
 
+          </UserProvider>
           </PizzasProvider>
           </CartProvider>
       </div>

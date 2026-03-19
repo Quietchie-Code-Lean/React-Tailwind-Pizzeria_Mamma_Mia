@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "../context/UserContext";
 
 
-const LoginPage = ({DbUsers}) => {
+const LoginPage = () => {
+
     /* Preset styles */
     const formClass = "w-full max-w-md mx-auto mb-12 mt-12 p-6 bg-white/80 backdrop-blur rounded-2xl shadow";
     const fieldWrapClass = "mb-4";
@@ -10,6 +12,9 @@ const LoginPage = ({DbUsers}) => {
     const btnClass = "w-full rounded-xl bg-slate-900 px-4 py-2.5 text-white font-semibold shadow " + "hover:bg-slate-800 active:scale-[0.99] transition";
     const errorClass = "mb-2 rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700";
 
+    /* Consuming DataBase from UserContext */
+    const {DbUsers} = useContext(UserContext);
+    
     /* global states user object */
     const [dataUser, setDataUser] = useState(
         {   
