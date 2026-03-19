@@ -1,4 +1,8 @@
-import { useState, useEffect } from "react";
+/* React Dependencies */
+import { useState, useEffect, useContext } from "react";
+
+/* import cart context */
+import { CartContext } from "../context/CartContext";
 
 const Pizza = () => {
 
@@ -11,6 +15,9 @@ const Pizza = () => {
     const descriptionClass = "text-sm text-gray-600 mb-4 border-y-2 py-4";
     const priceClass = "text-lg font-bold text-sky-300";
     const footerClass = "flex justify-evenly items-center pb-4";
+
+    /* consuming context */
+    const { addPizza } = useContext(CartContext)
 
     const [pizza, setPizza] = useState({});
 
@@ -47,7 +54,9 @@ const Pizza = () => {
                     <p className={ingredientsClass}>Ingredients: <br />{pizza.ingredients?.join(", ")}</p> 
                     
                     <div className={footerClass}>
-                        <button type="button">Add to Cart</button>
+                        <button type="button"
+                                value={pizza.id}
+                                onClick={() => addPizza(pizza)}>Add to Cart</button>
                         <span className={priceClass}>${pizza.price}</span>
                     </div>
                 </div>
