@@ -1,5 +1,4 @@
 /* react dependencies */
-/* import { pizzas } from "../../pizzas"; */
 import { useContext } from "react";
 
 /* components */
@@ -30,17 +29,7 @@ const PizzasHome = () => {
       <h2 className={titleClass}>Check our products:</h2>
           <div className={gridClass}>
               {dataPizzas.map(pizza => (
-
-                  <CardPizza key={pizza.id} pizza={pizza} />
-                  
-                                /* id={pizza.id}
-                                name={pizza.name}
-                                description={pizza.desc}
-                                price={pizza.price}
-                                ingredients={pizza.ingredients}
-                                img={pizza.img} */
-
-            ))}
+                <CardPizza key={pizza.id} pizza={pizza} />))}
           </div>
     </section>
 </>

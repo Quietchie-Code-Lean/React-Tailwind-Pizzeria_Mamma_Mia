@@ -2,6 +2,7 @@ import { useContext } from "react";
 
 /* context imports */
 import { CartContext } from '../context/CartContext';
+import { Link } from "react-router-dom";
 
 
 
@@ -41,7 +42,13 @@ const CardPizza = ({pizza}) => {
                             <button className={buttonClass}
                                     value={pizza.id}
                                     onClick={() => addPizza(pizza)}>Add to cart</button>
-                            <span className={priceClass}>${pizza.price}</span>
+                            <span className={priceClass}>
+                                <div className="flex flex-col">
+                                    ${pizza.price}
+                                    <Link to={`/pizza/${pizza.id}`}>View more</Link>
+                                </div>
+
+                            </span>
                         </div>
 
                     </div>
