@@ -16,6 +16,7 @@ const NavbarPizza = () => {
     const linkBaseClass = "px-2 py-1 rounded-md transition-colors duration-200";
     const activeClass = "bg-slate-700 text-white";
     const inactiveClass = "text-slate-300 hover:text-white hover:bg-slate-700/50";
+    const logoutBtnClass = "px-2 py-1 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/50 transition-colors duration-200";
     const cartClass = "flex text-sm justify-center items-center font-semibold bg-slate-700 px-3 py-1 rounded-md hover:bg-slate-600 transition";
     
 
@@ -25,7 +26,7 @@ const NavbarPizza = () => {
         `${linkBaseClass} ${isActive ? activeClass : inactiveClass}`;
 
     const { total } = useContext(CartContext);
-    const { token, setToken, handleLogout } = useContext(UserContext);
+    const { token, handleLogout } = useContext(UserContext);
   
     return (
 <>
@@ -38,14 +39,33 @@ const NavbarPizza = () => {
                 
                         <div className={linksContainerClass}>
                             <NavLink to="/" className={getNavLinkClass}>Home</NavLink>
-                            <NavLink to="/register" className={getNavLinkClass}>Register</NavLink>
-                            <NavLink to="/login" className={getNavLinkClass}>Login</NavLink>
-                            <NavLink to="/profile" className={getNavLinkClass}>Profile</NavLink>
+                            
+                            {token ? (
+                                    <> 
+                                        <NavLink to="/profile" className={getNavLinkClass}>
+                                            Profile
+                                        </NavLink>
+                                        <button type="button" 
+                                                onClick={handleLogout}
+                                                className={logoutBtnClass}>
+                                                Logout
+                                        </button>
+                                    </>
+                                    )
+                                    :
+                                    (
+                                    <> 
+                                        <NavLink to="/register" className={getNavLinkClass}>
+                                            Register
+                                        </NavLink>
+                                        <NavLink to="/login" className={getNavLinkClass}>
+                                            Login
+                                        </NavLink>
+                                    </>
+                                    )}
                         </div>
                     </div>
                     <span className="flex gap-4">
-                        <button type="button"
-                                onClick={handleLogout}>Logout</button>
                         <NavLink to="/cart" className={cartClass}>
                             🛒 Total: ${total}
                         </NavLink>
