@@ -1,5 +1,7 @@
 
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
+import { useContext } from "react";
 
 
 const Profile = () => {
@@ -13,6 +15,9 @@ const Profile = () => {
     const buttonsClass = "mt-5 flex gap-2.5 justify-center";
     const profileButton = "py-2 px-4 cursor-pointer";
 
+    /* User context */
+    const { handleLogout } = useContext(UserContext);
+
     /* preset use navigate */
     const navigate = useNavigate();
 
@@ -20,8 +25,9 @@ const Profile = () => {
         navigate("/")
     };
     
-    const handleLogout = () => {
-        navigate("/")
+    const handleout = () => {
+        handleLogout
+        navigate("/login")
     };
 
     
@@ -48,7 +54,7 @@ const Profile = () => {
                         className={profileButton}>Go Home
                     </button>
                     <button 
-                        onClick={handleLogout}
+                        onClick={handleout}
                         className={profileButton}>Log out
                     </button>
                 </div>

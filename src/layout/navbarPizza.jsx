@@ -16,7 +16,6 @@ const NavbarPizza = () => {
     const linkBaseClass = "px-2 py-1 rounded-md transition-colors duration-200";
     const activeClass = "bg-slate-700 text-white";
     const inactiveClass = "text-slate-300 hover:text-white hover:bg-slate-700/50";
-    const logoutBtnClass = "px-2 py-1 rounded-md text-slate-300 hover:text-white hover:bg-slate-700/50 transition-colors duration-200";
     const cartClass = "flex text-sm justify-center items-center font-semibold bg-slate-700 px-3 py-1 rounded-md hover:bg-slate-600 transition";
     
 
@@ -47,7 +46,7 @@ const NavbarPizza = () => {
                                         </NavLink>
                                         <button type="button" 
                                                 onClick={handleLogout}
-                                                className={logoutBtnClass}>
+                                                className="logout-btn">
                                                 Logout
                                         </button>
                                     </>

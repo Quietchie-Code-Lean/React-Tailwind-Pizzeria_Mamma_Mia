@@ -1,8 +1,9 @@
 /* React and hooks */
-import {  useContext } from "react";
+import { useContext } from "react";
 
 /* context */
 import { CartContext } from "../context/CartContext.jsx";
+import { UserContext } from "../context/UserContext.jsx";
 
 /* Components */
 import CounterPizza from '../components/CounterPizza.jsx';
@@ -12,6 +13,7 @@ const Cart = () => {
 
     /* CartContext */
     const {cartItems, addPizza, subsPizza, deletePizza, total, isEmpty } = useContext(CartContext);
+    const { token } = useContext(UserContext)
 
     /* Preset styles */
     const mainContent = "w-full min-h-[80vh] flex flex-col";
@@ -74,7 +76,10 @@ const Cart = () => {
                     <span>${total}</span>
                 </p>
                 <button type="submit"
-                className={payBtnClass}>Payment</button>
+                        className={payBtnClass}
+                        disabled={!token}>
+                    Payment
+                </button>
         </div>
         </>
     )

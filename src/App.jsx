@@ -1,11 +1,9 @@
 /* React dependencie */
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
-/* providers */
-import CartProvider from './context/CartContext.jsx';
-import PizzasProvider from './context/PizzasContext.jsx';
-import UserProvider from './context/UserContext.jsx';
 
+import { useContext } from 'react';
+import { UserContext } from './context/UserContext.jsx';
 
 /* style css */
 import './App.css'
@@ -23,34 +21,25 @@ import NotFound from './views/NotFound.jsx';
 
 
 function App() {
- 
-
+  
+  const { token } = useContext(UserContext);
 
   return (
     <>
     <div className="min-h-screen flex flex-col">
-          <CartProvider>
-          <PizzasProvider>
-          <UserProvider>
-
-
               <NavbarPizza/>
               <main className="flex-1">
                   <Routes>
                     <Route index element={<PizzasHome />}/>
-                    <Route path="/register" element={<RegisterPage />} />
-                    <Route path="/login" element={<LoginPage />} />
-                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/register" element={!token ? <RegisterPage /> : <Navigate to={"/"} />} />
+                    <Route path="/login" element={!token ? <LoginPage /> : <Navigate to={"/"} />} />
+                    <Route path="/profile" element={token ? <Profile /> : <Navigate to={"/login"} />} /> 
                     <Route path="/pizza/:id" element={<Pizza /> }/>
                     <Route path="/cart" element={<Cart />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>
               </main>
               <FooterPizza/>
-
-          </UserProvider>
-          </PizzasProvider>
-          </CartProvider>
       </div>
     </>
   );
