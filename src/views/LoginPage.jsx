@@ -12,69 +12,41 @@ const LoginPage = () => {
     const btnClass = "w-full rounded-xl bg-slate-900 px-4 py-2.5 text-white font-semibold shadow " + "hover:bg-slate-800 active:scale-[0.99] transition";
     const errorClass = "mb-2 rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700";
 
-    /* Consuming DataBase from UserContext */
-    const {DbUsers} = useContext(UserContext);
+    /* Consuming loginRequest to backend from UserContext */
+        const {loginRequest} = useContext(UserContext);
     
-    /* global states user object */
-    const [dataUser, setDataUser] = useState(
-        {   
-            email: "",
-            password: "",
-        }
-    );
+    /* local form states */
+        const [email, setEmail] = useState("");
+        const [password, setPassword] = useState("");
 
     /* error states */
         const [error, setError] = useState(false);
         const [errorPassword, setErrorPassword] = useState(false);
-        const [errorEmail, setErrorEmail] = useState(false);
-        const [errorLogin, setErrorLogin] = useState(false);
-
 
     const handleSubmit = (e) => {
         e.preventDefault()
+
+        
         /* fields required? */
-        if(!dataUser.email || !dataUser.password){
+        if(!email || !password){
             setError(true);
             return;
         }setError(false);
 
         /* password long enough?? */
-        if(dataUser.password.length < 6){
+        if(password.length < 6){
             setErrorPassword(true);
             return;
         } setErrorPassword(false);
+        
 
-        /* user exist? */
-        const user = DbUsers.find(DbUser => DbUser.email === dataUser.email);
-        if (!user) { 
-            setErrorEmail(true); 
-            return; 
-        }
-        /* password match? */
-        if (user.password !== dataUser.password) {
-             setErrorLogin(true); 
-             return; 
-        }alert("You have logged in!");
+        loginRequest(email, password);
+        
+        setEmail("");
+        setPassword("");
 
-
-        setDataUser({
-            email: "",
-            password: "",
-        })
     };
 
-    const handleChange = (e) => {
-
-        const {name, value} = e.target;
-        
-        setDataUser(prev => ({...prev, [name]: value}));
-
-        setError(false);
-        setErrorEmail(false);
-        setErrorPassword(false);
-        setErrorLogin(false);
-
-    }
 
     return(
 
@@ -87,9 +59,6 @@ const LoginPage = () => {
             <div className="ErrorRenders">
                 {error? <p className={errorClass}>All fields are required!!</p> : null}
                 {errorPassword? <p className={errorClass}>Invalid Password: at least 6 characters!!</p> : null}
-                {errorEmail? <p className={errorClass}>User does not exist!</p> : null}
-                {errorLogin? <p className={errorClass}>Password is wrong, try again</p> : null}
-            
             </div>
 
             <div className={fieldWrapClass}>
@@ -98,9 +67,11 @@ const LoginPage = () => {
                 className={inputClass} 
                 name="email"
                 type="email"
-                value={dataUser.email} 
+                value={email} 
                 placeholder="Enter your email"
-                onChange={handleChange}
+                onChange={(e) => {  setEmail(e.target.value) 
+                                    setError(false)
+                                }}
                 />
             </div>
 
@@ -110,9 +81,12 @@ const LoginPage = () => {
                 className={inputClass}  
                 name="password"
                 type="password" 
-                value={dataUser.password}
+                value={password}
                 placeholder="Enter your password"
-                onChange={handleChange}
+                onChange={(e) => {  setPassword(e.target.value) 
+                                    setErrorPassword(false)
+                                    setError(false)
+                                }}
                 />
             </div>
 
