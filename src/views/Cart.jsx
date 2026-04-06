@@ -1,5 +1,5 @@
 /* React and hooks */
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 /* context */
 import { CartContext } from "../context/CartContext.jsx";
@@ -15,6 +15,9 @@ const Cart = () => {
     const {cartItems, addPizza, subsPizza, deletePizza, total, isEmpty } = useContext(CartContext);
     const { token } = useContext(UserContext)
 
+    /* success State */
+    const [success, setSuccess] = useState(false);
+    
     /* Preset styles */
     const mainContent = "w-full min-h-[80vh] flex flex-col";
     const titleClass = "text-2xl font-bold text-slate-800 mb-6";
@@ -28,6 +31,34 @@ const Cart = () => {
     const totalLabelClass = "mr-2";
     const payBtnClass = "my-6 mx-auto w-1/8 inline-flex items-center justify-center rounded-lg bg-slate-900 px-6 py-2.5 text-white font-semibold shadow hover:bg-slate-800 active:scale-[0.99] transition";
 
+    /* handler checkout purchase */
+
+    const handlerCheckout = async () => {
+        try {
+            const response = await fetch( "http://localhost:5000/api/checkouts", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`},
+                body: JSON.stringify({
+                    cart: cartItems,
+                }),
+            });
+
+            const data = await response.json();
+
+            if(!response.ok){
+                alert(data.error || "Checkout failed");
+                return;
+            }
+            
+            setSuccess(true);
+
+
+            } catch (error) {
+                console.log(error.message);
+            }
+    }
 
 
     return(
@@ -75,11 +106,13 @@ const Cart = () => {
                     <span className={totalLabelClass}>Total Payment:</span>
                     <span>${total}</span>
                 </p>
-                <button type="submit"
+                <button type="button"
                         className={payBtnClass}
-                        disabled={!token}>
+                        disabled={!token || isEmpty}
+                        onClick={handlerCheckout}>
                     Payment
                 </button>
+                {success ? <p>Purchase completed successfully!</p> : null}
         </div>
         </>
     )
