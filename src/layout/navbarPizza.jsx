@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import { UserContext } from "../context/UserContext";
@@ -18,14 +18,19 @@ const NavbarPizza = () => {
     const inactiveClass = "text-slate-300 hover:text-white hover:bg-slate-700/50";
     const cartClass = "flex text-sm justify-center items-center font-semibold bg-slate-700 px-3 py-1 rounded-md hover:bg-slate-600 transition";
     
-
+    const navigate = useNavigate();
 
     /* This line activate useContext within Navbar component and bring data from CartContext */
     const getNavLinkClass = ({ isActive }) =>
         `${linkBaseClass} ${isActive ? activeClass : inactiveClass}`;
 
     const { total } = useContext(CartContext);
-    const { token, handleLogout } = useContext(UserContext);
+    const { token, logout } = useContext(UserContext);
+    
+    const handleLogout = () => {
+            logout();
+            navigate("/login");
+    };
   
     return (
 <>
