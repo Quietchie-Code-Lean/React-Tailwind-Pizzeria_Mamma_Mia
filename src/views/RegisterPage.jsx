@@ -12,24 +12,21 @@ const RegisterPage = () => {
     const btnClass = "w-full rounded-xl bg-slate-900 px-4 py-2.5 text-white font-semibold shadow " + "hover:bg-slate-800 active:scale-[0.99] transition";
     const errorClass = "mb-2 rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700";
 
-    /* Consuming DataBase from context */
-    const {DbUsers, setDbUsers} = useContext(UserContext);
+    /* Consuming registerRequest from context */
+    const {registerRequest} = useContext(UserContext);
     
-    /* global states user object */
-    const [dataUser, setDataUser] = useState(
-        {   
-            id: "",
-            email: "",
-            password: "",
-            confirmPassword: "",
-        }
-    )
+    /* local form states */
+    
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+
 
     /* error states */
     const [error, setError] = useState(false);
     const [errorMatch, setErrorMatch] = useState(false);
     const [errorPassword, setErrorPassword] = useState(false);
-    const [errorExist, setErrorExist] = useState(false);
+
 
 
     /* submit validations */
@@ -38,63 +35,39 @@ const RegisterPage = () => {
 
         
         /* required fields? */
-        if( !dataUser.email ||
-            !dataUser.password ||
-            !dataUser.confirmPassword){
+        if( !email ||
+            !password ||
+            !confirmPassword){
                 setError(true);
                 return;
             }
             setError(false);
-        
-        /* email exisxt? */
-        const emailExist = DbUsers.some(DbUser => DbUser.email === dataUser.email);
-
-        if(emailExist){
-            setErrorExist(true);
-            return;
-        }
-        setErrorExist(false);
             
         /* password long enough? */
-        if(dataUser.password.length < 6){
+        if(password.length < 6){
             setErrorPassword(true);
             return;
         }
         setErrorPassword(false);
         
         /* password match? */
-        if(dataUser.password !== dataUser.confirmPassword){
+        if(password !== confirmPassword){
             setErrorMatch(true);
             return;
         }
         setErrorMatch(false);
 
-        /* add ID */
-        const id = crypto.randomUUID();
+        registerRequest(email, password);
+    
+            setEmail("");
+            setPassword("");
+            setConfirmPassword("");
         
-        setDbUsers(prev => [...prev, { id, email: dataUser.email, password: dataUser.password }])
-
-         setDataUser({
-            email: "",
-            password: "",
-            confirmPassword: ""
-            });
     };
 
-    /* controlled onChange */
-    const handleChange = (e) => {
 
-        const name = e.target.name;
-        const value = e.target.value;
+       
 
-        setDataUser(prev => ({...prev, [name]: value}));
-
-        setError(false);
-        setErrorExist(false);
-        setErrorMatch(false);
-        setErrorPassword(false);
-
-    }
 
     return(
 <>
@@ -105,7 +78,6 @@ const RegisterPage = () => {
         <div className="ErrorRenders">
 
             {error? <p className={errorClass}>All fields are Required!</p> : null}
-            {errorExist? <p className={errorClass}>You Already have an account, please Login!</p> : null}
             {errorMatch? <p className={errorClass}>Password must Match!</p> : null}
             {errorPassword? <p className={errorClass}>The password must be at least 6 characters!</p>: null}
         
@@ -117,9 +89,11 @@ const RegisterPage = () => {
             className={inputClass} 
             name="email"
             type="email"
-            value={dataUser.email} 
+            value={email} 
             placeholder="Enter your email"
-            onChange={handleChange}
+            onChange={(e) => {  setEmail(e.target.value) 
+                                setError(false)
+                            }}
             />
         </div>
 
@@ -129,9 +103,12 @@ const RegisterPage = () => {
             className={inputClass}  
             name="password"
             type="password"
-            value={dataUser.password}
+            value={password}
             placeholder="Enter your password"
-            onChange={handleChange}/>
+            onChange={(e) => {  setPassword(e.target.value) 
+                                setErrorPassword(false);
+                                setErrorMatch(false);
+                                }}/>
         </div>
 
         <div className={fieldWrapClass}>
@@ -140,9 +117,11 @@ const RegisterPage = () => {
             className={inputClass}  
             name="confirmPassword"
             type="password"
-            value={dataUser.confirmPassword} 
+            value={confirmPassword} 
             placeholder="Repeat your password"
-            onChange={handleChange}/>
+            onChange={(e) => {  setConfirmPassword(e.target.value) 
+                                setErrorMatch(false)
+                                }}/>
         </div>
 
         <button className={btnClass} type="submit">Register</button>
