@@ -1,7 +1,8 @@
 
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+
 
 
 const Profile = () => {
@@ -16,7 +17,7 @@ const Profile = () => {
     const profileButton = "py-2 px-4 cursor-pointer";
 
     /* User context */
-    const { handleLogout } = useContext(UserContext);
+    const { email, getProfile, logout } = useContext(UserContext);
 
     /* preset use navigate */
     const navigate = useNavigate();
@@ -25,10 +26,17 @@ const Profile = () => {
         navigate("/")
     };
     
-    const handleout = () => {
-        handleLogout
+    const handleLogout = () => {
+        logout()
         navigate("/login")
     };
+
+
+    useEffect(() => {
+
+            getProfile();
+
+    }, []);
 
     
     return(
@@ -45,7 +53,7 @@ const Profile = () => {
                 className={avatarClass}/>
 
                 <h2>UserName</h2>
-                <p>lele@lele.com</p>
+                <p>{email}</p>
                 <p className={bioClass}>Info Bio User: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi tempora reprehenderit eius nihil quo a non voluptas temporibus aut ullam assumenda dignissimos nam, eligendi ut!</p>
 
                 <div className={buttonsClass}>
@@ -54,7 +62,7 @@ const Profile = () => {
                         className={profileButton}>Go Home
                     </button>
                     <button 
-                        onClick={handleout}
+                        onClick={handleLogout}
                         className={profileButton}>Log out
                     </button>
                 </div>
